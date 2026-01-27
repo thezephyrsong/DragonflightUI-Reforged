@@ -117,11 +117,9 @@ Immersion is developed and maintained by the same author.
 
 <br>
 
-## 📜 Final Words
+## 📜 Credits
 
-This is not a UI for everyone.
-It is a UI for those who know what they want —
-and recognize it the moment they log in.
-
-Welcome to Dragonflight UI: Reforged.
-The interface Azeroth deserves.
+Blizzard
+Guzruul
+Shagu
+DragonflightUI by Karl-Heinz-Schneider
