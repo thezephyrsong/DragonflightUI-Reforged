@@ -72,18 +72,44 @@ DFRL:NewMod("Mini", 1, function()
     }
 
     function Setup:KillBlizz()
-        PetFrameHealthBar:SetWidth(0)
-        PetFrameHealthBar:SetHeight(0)
-        PetFrameHealthBar:SetAlpha(0)
-        PetFrameHealthBar:Hide()
-        PetFrameHealthBar:SetScript('OnEnter', nil)
-        PetFrameHealthBar:SetScript('OnLeave', nil)
-        PetFrameManaBar:SetWidth(0)
-        PetFrameManaBar:SetHeight(0)
-        PetFrameManaBar:SetAlpha(0)
-        PetFrameManaBar:Hide()
-        PetFrameManaBar:SetScript('OnEnter', nil)
-        PetFrameManaBar:SetScript('OnLeave', nil)
+
+        -- Hard-disable vanilla pet bars/texts so they can never reappear under DFRL
+        if PetFrameHealthBar then
+            PetFrameHealthBar:Hide()
+            PetFrameHealthBar.Show = function() end
+        end
+        if PetFrameManaBar then
+            PetFrameManaBar:Hide()
+            PetFrameManaBar.Show = function() end
+        end
+
+        -- Vanilla pet health texts (optional, but prevents pop-back / overlap)
+        if PetFrameHealthBarText then
+            PetFrameHealthBarText:Hide()
+            PetFrameHealthBarText.Show = function() end
+        end
+        if PetFrameHealthBarTextLeft then
+            PetFrameHealthBarTextLeft:Hide()
+            PetFrameHealthBarTextLeft.Show = function() end
+        end
+        if PetFrameHealthBarTextRight then
+            PetFrameHealthBarTextRight:Hide()
+            PetFrameHealthBarTextRight.Show = function() end
+        end
+
+        -- Vanilla pet mana texts (optional, but prevents pop-back / overlap)
+        if PetFrameManaBarText then
+            PetFrameManaBarText:Hide()
+            PetFrameManaBarText.Show = function() end
+        end
+        if PetFrameManaBarTextLeft then
+            PetFrameManaBarTextLeft:Hide()
+            PetFrameManaBarTextLeft.Show = function() end
+        end
+        if PetFrameManaBarTextRight then
+            PetFrameManaBarTextRight:Hide()
+            PetFrameManaBarTextRight.Show = function() end
+        end
         TargetofTargetHealthBar:Hide()
         TargetofTargetManaBar:Hide()
 
