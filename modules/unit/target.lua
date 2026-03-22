@@ -85,6 +85,12 @@ DFRL:NewMod("Target", 1, function()
         TargetFrameHealthBar:SetScript("OnEnter", nil)
         TargetFrameHealthBar:SetScript("OnLeave", nil)
         TargetFrameNameBackground:SetTexture(nil)
+
+        -- Prevent Blizzard's TargetFrame_Update from resurfacing the vanilla bars
+        TargetFrameHealthBar:Hide()
+        TargetFrameHealthBar.Show = function() end
+        TargetFrameManaBar:Hide()
+        TargetFrameManaBar.Show = function() end
     end
 
     function Setup:HealthBar()
