@@ -112,7 +112,9 @@ DFRL:NewMod("Mini", 1, function()
             PetFrameManaBarTextRight.Show = function() end
         end
         TargetofTargetHealthBar:Hide()
+        TargetofTargetHealthBar.Show = function() end
         TargetofTargetManaBar:Hide()
+        TargetofTargetManaBar.Show = function() end
 
         for i = 1, 4 do
             local healthBar = _G['PartyMemberFrame' .. i .. 'HealthBar']
