@@ -74,6 +74,7 @@ DFRL:NewMod("Map", 1, function()
             GameTimeFrame:SetScale(0.8)
             GameTimeFrame:ClearAllPoints()
             GameTimeFrame:SetPoint("BOTTOMLEFT", Minimap, "TOPRIGHT", -10, -30)
+            GameTimeFrame:Hide()
             KillFrame(MinimapShopFrame)
         end
 
