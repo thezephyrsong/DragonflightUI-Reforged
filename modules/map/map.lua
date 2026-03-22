@@ -192,23 +192,32 @@ DFRL:NewMod("Map", 1, function()
 
             BuffButton0:ClearAllPoints()
             BuffButton0:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, 0)
-            BuffButton0:SetScale(scale)
 
             BuffButton8:ClearAllPoints()
             BuffButton8:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -50)
-            BuffButton8:SetScale(scale)
 
             TempEnchant1:ClearAllPoints()
             TempEnchant1:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -100)
-            TempEnchant1:SetScale(scale)
 
             BuffButton16:ClearAllPoints()
             BuffButton16:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -150)
-            BuffButton16:SetScale(scale)
 
 	    BuffButton32:ClearAllPoints()
             BuffButton32:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -200)
-            BuffButton32:SetScale(scale)
+
+            -- scale every individual buff/debuff button
+            for i = 0, 23 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(scale) end
+            end
+            for i = 32, 39 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(scale) end
+            end
+            for i = 1, 2 do
+                local b = _G["TempEnchant" .. i]
+                if b then b:SetScale(scale) end
+            end
         end
 
         function Setup:Tracker()
@@ -800,11 +809,30 @@ DFRL:NewMod("Map", 1, function()
         end
 
         callbacks.buffScale = function(value)
-            local frames = {BuffButton0, BuffButton8, TempEnchant1, BuffButton16, BuffButton32}
-            for _, frame in ipairs(frames) do
-                if frame then
-                    frame:SetScale(value)
-                end
+            -- BuffButton0-7: first buff row
+            -- BuffButton8-15: second buff row
+            -- BuffButton16-23: third buff row (debuffs)
+            -- BuffButton32-39: fourth buff row
+            -- TempEnchant1-2: weapon enchants
+            for i = 0, 7 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(value) end
+            end
+            for i = 8, 15 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(value) end
+            end
+            for i = 16, 23 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(value) end
+            end
+            for i = 32, 39 do
+                local b = _G["BuffButton" .. i]
+                if b then b:SetScale(value) end
+            end
+            for i = 1, 2 do
+                local b = _G["TempEnchant" .. i]
+                if b then b:SetScale(value) end
             end
         end
 
