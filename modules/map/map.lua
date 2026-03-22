@@ -75,6 +75,11 @@ DFRL:NewMod("Map", 1, function()
             GameTimeFrame:ClearAllPoints()
             GameTimeFrame:SetPoint("BOTTOMLEFT", Minimap, "TOPRIGHT", -10, -30)
             GameTimeFrame:Hide()
+
+            if TimeManagerClockButton then
+                TimeManagerClockButton:Hide()
+                TimeManagerClockButton.Show = function() end
+            end
             KillFrame(MinimapShopFrame)
         end
 
