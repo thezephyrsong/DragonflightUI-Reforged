@@ -197,6 +197,8 @@ DFRL:NewMod("Map", 1, function()
             local scale = DFRL:GetTempDB("Map", "buffScale") or 1
 
             local function ApplyBuffPositions()
+                local s = DFRL:GetTempDB("Map", "buffScale") or 1
+
                 BuffButton0:ClearAllPoints()
                 BuffButton0:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, 0)
 
@@ -211,20 +213,19 @@ DFRL:NewMod("Map", 1, function()
 
                 BuffButton24:ClearAllPoints()
                 BuffButton24:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -200)
+
+                for i = 0, 31 do
+                    local b = _G["BuffButton" .. i]
+                    if b then b:SetScale(s) end
+                end
+                for i = 1, 2 do
+                    local b = _G["TempEnchant" .. i]
+                    if b then b:SetScale(s) end
+                end
             end
 
             ApplyBuffPositions()
             hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", ApplyBuffPositions)
-
-            -- scale every individual buff/debuff button (0-31) and weapon enchants
-            for i = 0, 31 do
-                local b = _G["BuffButton" .. i]
-                if b then b:SetScale(scale) end
-            end
-            for i = 1, 2 do
-                local b = _G["TempEnchant" .. i]
-                if b then b:SetScale(scale) end
-            end
         end
 
         function Setup:Tracker()
