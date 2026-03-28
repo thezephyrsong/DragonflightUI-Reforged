@@ -6,7 +6,7 @@ DFRL:NewMod("Menu", 1, function()
     local Setup = {
         menuframe = nil,
         w = 200,
-        h = 430,
+        h = 370,
         gap = 0,
         space = 15,
         btnw = 120,
