@@ -36,8 +36,6 @@ DFRL:NewMod("Collector", 1, function()
 
     function Setup:IsValidButton(frame)
         if not frame:GetName() then return false end
-         -- Special case for battlefield dropdown
-        if frame:GetName() == "MiniMapBattlefieldFrame" then return true end
         if not frame:IsVisible() then return false end
         if frame:GetHeight() > 40 then return false end
         if frame:GetWidth() > 40 then return false end
@@ -46,7 +44,7 @@ DFRL:NewMod("Collector", 1, function()
         local ignored = {
             "Note", "GatherNote", "MinimapIcon", "GatherMatePin", "QuestieNote",
             "MiniNotePOI", "CartographerNotesPOI", "RecipeRadarMinimapIcon",
-            "MinimapZoomIn", "MinimapZoomOut", "LFTMinimapButton"
+            "MinimapZoomIn", "MinimapZoomOut", "LFTMinimapButton", "MinimapBattlefieldFrame"
         }
 
         local name = frame:GetName()
@@ -89,6 +87,22 @@ DFRL:NewMod("Collector", 1, function()
                 table.insert(buttons, child)
             end
         end
+
+        -- Manually add TurtleWoW battlefield button since it is not parented to Minimap
+        local twBattlefield = _G["TWMiniMapBattlefieldFrame"]
+        if twBattlefield then
+            local alreadyAdded = false
+            for i = 1, table.getn(buttons) do
+                if buttons[i] == twBattlefield then
+                    alreadyAdded = true
+                    break
+                end
+            end
+            if not alreadyAdded then
+                table.insert(buttons, twBattlefield)
+            end
+        end
+
         return buttons
     end
 
