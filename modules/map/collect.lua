@@ -36,6 +36,8 @@ DFRL:NewMod("Collector", 1, function()
 
     function Setup:IsValidButton(frame)
         if not frame:GetName() then return false end
+         -- Special case for battlefield dropdown
+        if frame:GetName() == "MiniMapBattlefieldFrame" then return true end
         if not frame:IsVisible() then return false end
         if frame:GetHeight() > 40 then return false end
         if frame:GetWidth() > 40 then return false end
